@@ -1,0 +1,15 @@
+{
+  "question_file": "files/question.md",
+  "answer_file": "files/answer.md",
+  "cells_to_remove": {
+      "easy": 30,
+      "medium": 40,
+      "hard": 50
+  },
+  "default_level": "medium",
+  "levels": {
+      "0" : "easy",
+      "1" : "medium",
+      "2" : "hard"
+  }
+}
