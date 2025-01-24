@@ -74,13 +74,15 @@ output:
 
 usage:
 ------
+Python version used - 3.11.11
+
 to solve a puzzle:
 1. place puzzle in question.md
-2. run: "python src/sudoku_solver.py"
+2. run: "python3 src/sudoku_solver.py"
 3. get solution in answer.md
 
 to create a new puzzle:
-1. run: "python src/sudoku_creator.py"
+1. run: "python3 src/sudoku_creator.py"
 2. choose difficulty (0:easy, 1:medium, 2:hard)
 3. get puzzle in question.md
 
