@@ -16,15 +16,21 @@ def read_markdown(file_path):
     return board
 
 
+def format_board(board):
+    formatted = []
+    for i, row in enumerate(board):
+        line = " ".join(str(num) if num != 0 else "x" for num in row)
+        line_with_pipes = " | ".join([line[:5], line[6:11], line[12:]])
+        formatted.append(line_with_pipes)
+        if i == 2 or i == 5:
+            formatted.append("------+------+------")
+    return "\n".join(formatted)
+
+
 def write_markdown(file_path, board, heading_text):
     with open(file_path, "w") as file:
-        file.write("## {}:\n\n```\n".format(heading_text, "Answer"))
-        for i, row in enumerate(board):
-            line = " ".join(str(num) if num != 0 else "x" for num in row)
-            line_with_pipes = " | ".join([line[:5], line[6:11], line[12:]])
-            file.write(line_with_pipes + "\n")
-            if i == 2 or i == 5:
-                file.write("------+------+------\n")
+        file.write("## {}:\n\n```\n".format(heading_text))
+        file.write(format_board(board) + "\n")
         file.write("```\n")
 
 

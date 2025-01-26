@@ -1,10 +1,16 @@
 import random
 import json
-from utils import write_markdown, can_place_number
+from utils import write_markdown, can_place_number, format_board
 from sudoku_solver import solve
 
 
 def generate_full_solution():
+    """
+    Generates a complete valid Sudoku solution by:
+    * Placing a few random initial numbers
+    * Using existing sudoku solver to fill in the rest
+    * Returns a 9x9 solved Sudoku board
+    """
     board = [[0] * 9 for _ in range(9)]
     initial_numbers = 9
     for _ in range(initial_numbers):
@@ -29,14 +35,19 @@ def remove_numbers(board, num_to_remove=40):
     return board
 
 def create_sudoku_puzzle(options):
+    """
+    * Creates a Sudoku puzzle by generating a full solution and removing numbers.
+    * The difficulty is determined by the number of cells removed.
+    * Writes the puzzle to a file.
+    """
     num_to_remove = options.get('cells_to_remove')
     file_path = options.get('question_file')
     full_board = generate_full_solution()
     puzzle_board = remove_numbers(full_board, num_to_remove)
     write_markdown(file_path, puzzle_board, "Your puzzle")
-    print(
-        "Check out your puzzle in {}".format(file_path)
-    )
+    print("\nYour puzzle:\n")
+    print(format_board(puzzle_board))
+    print(f"\nPuzzle has been saved to {file_path}")
 
 def setup_options():
     with open('config.json', 'r') as file:

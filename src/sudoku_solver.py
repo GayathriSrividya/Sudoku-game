@@ -6,10 +6,18 @@ from utils import (
     write_markdown,
     get_possibilities,
     analyse_possibilities,
+    format_board,
 )
 
 
 def solve(grid):
+    """
+    * Main solving algorithm for the Sudoku puzzle using backtracking.
+    * Attempts to fill each empty cell with valid numbers and backtracks when stuck.
+    * Maintains a history of moves by pushing them to a stack, allowing the program 
+      to undo previous moves when it reaches the end of the game.
+    * Returns True if a solution is found, False otherwise.
+    """
     previous_attempts = []
 
     while True:
@@ -44,6 +52,13 @@ def solve(grid):
 
 
 def initial_validation(read_path):
+    """
+    * Validates the input Sudoku puzzle from the file.
+    * Checks if the puzzle is valid and analyses initial possibilities.
+    * Analyzing possibilities generates metadata containing a list of possible values 
+      for each cell and prefills some obvious values.
+    * Returns the board and validation status.
+    """
     sudoku_board = read_markdown(read_path)
     is_valid_question = validate_board(sudoku_board)
     if is_valid_question:
@@ -65,9 +80,11 @@ if __name__ == "__main__":
             solved = solve(sudoku_board)
             if solved:
                 write_markdown(write_path, sudoku_board, "Answer")
-                print("Sudoku solved successfully! Check out answer in answer.md")
+                print("\nSudoku solved successfully:\n")
+                print(format_board(sudoku_board))
+                print("\nAnswer saved in {}".format(write_path))
                 end_time = time.time()
-                print(f"Execution time: {end_time - start_time:.6f} seconds")
+                print(f"\nExecution time: {end_time - start_time:.6f} seconds")
             else:
                 print("Failed to solve the Sudoku!")
         else:

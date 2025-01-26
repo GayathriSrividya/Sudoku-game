@@ -79,12 +79,12 @@ Python version used - 3.11.11
 to solve a puzzle:
 1. place puzzle in question.md
 2. run: "cd src && python3 sudoku_solver.py"
-3. get solution in answer.md
+3. Your answer will be printed in console, also you can get solution in files/answer.md
 
 to create a new puzzle:
 1. run: "cd src && python3 sudoku_creator.py"
 2. choose difficulty (0:easy, 1:medium, 2:hard)
-3. get puzzle in question.md
+3. Your puzzle will be printed in console, also you can get puzzle in files/question.md
 
 
 reference:
